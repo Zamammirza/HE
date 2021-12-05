@@ -1,5 +1,7 @@
 processed
 
+.*.py
+
 # Created by https://www.toptal.com/developers/gitignore/api/pydev,pycharm+all,visualstudiocode,jupyternotebooks,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=pydev,pycharm+all,visualstudiocode,jupyternotebooks,python
 

@@ -17,6 +17,7 @@ def load(image_filename):
     image : 2D numpy array (grayscale image)
         The loaded image
     """
+    print(f"loading {image_filename}")
     path = f"image_database/{image_filename}"
     if not os.path.isfile(path):
         raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), path)
@@ -66,6 +67,8 @@ def apply_to_all(module):
     module : Module with function `process`
     """
     image_names = os.listdir("image_database")
+    with open("image_database/.image_ignore", "r") as f:
+        ignores = f.read().splitlines()
     for image_filename in image_names:
-        if not image_filename == ".gitignore":
+        if not image_filename in ignores:
             apply(module, image_filename)
