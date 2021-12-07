@@ -60,15 +60,25 @@ def apply_to_all(module):
     """Load all images, process and save them
 
     Loads all images from `image_database` as grayscale, applies the function
-    module.process to them and places the outputs in `processed/<module.__name__>`
+    module.process to them and places the outputs in
+    `processed/<module.__name__>`
+
+    If you want to exclude certain files, create a file in the folder
+    `image_database` called `.images_ignore` with a list of all filenames you
+    would like to exclude. 
 
     Parameters
     ----------
     module : Module with function `process`
     """
     image_names = os.listdir("image_database")
-    with open("image_database/.image_ignore", "r") as f:
-        ignores = f.read().splitlines()
+    # ignored files by default
+    ignores = [".gitignore", ".image_ignore"]
+    try:       
+        with open("image_database/.image_ignore", "r") as f:
+            ignores.extend(f.read().splitlines())
+    except FileNotFoundError:
+        print("File '.image_ignore' not found - only ingnoring files ignored by default")
     for image_filename in image_names:
         if not image_filename in ignores:
             apply(module, image_filename)
