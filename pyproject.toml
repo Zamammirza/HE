@@ -3,8 +3,7 @@ name = "ivp_ws21_histo_eq"
 version = "0.1.0"
 description = "Code for 'Histogram Equalization' seminar 'Image, Video and Perception', TU Ilmenau, WS 21/22."
 authors = [
-    "Johannes Fried <johannes.fried@tu-ilmenau.de>", 
-    "Bashar Iftikhar <bashar.iftikhar@tu-ilmenau.de>", 
+    "Johannes Fried <johannes.fried@tu-ilmenau.de>",  
     "Zamam Mirza <zamam.mirza@tu-ilmenau.de>", 
     "Ahmed Mustafa <ahmed.mustafa@tu-ilmenau.de>",
     "Adham Radwan <adham.radwan@tu-ilmenau.de>"
