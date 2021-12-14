@@ -1,3 +1,5 @@
+from . import ContrastEnhancementPack
+
 def process(image):
     """Apply BBHE to the image
 
@@ -11,7 +13,8 @@ def process(image):
     processed_image : 2D numpy array (grayscale image)
         A copy of the input image with BBHE applied
     """
-    # TODO - insert BBHE code here instead
-    processed_image = image
+
+    levels = ContrastEnhancementPack.get_depth(image)
+    processed_image = ContrastEnhancementPack.bbheq_util(image, levels)
     
     return processed_image
