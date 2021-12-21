@@ -17,6 +17,7 @@ def load(image_filename):
     image : 2D numpy array (grayscale image)
         The loaded image
     """
+    print(f"loading {image_filename}")
     path = f"image_database/{image_filename}"
     if not os.path.isfile(path):
         raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), path)
@@ -55,17 +56,38 @@ def apply(module, image_filename):
     if not write_retval:
         raise Exception(f"OpenCV could not write processed image to {output_path}")
 
-def apply_to_all(module):
+def apply_to_all(module, ignore=None):
     """Load all images, process and save them
 
     Loads all images from `image_database` as grayscale, applies the function
-    module.process to them and places the outputs in `processed/<module.__name__>`
+    module.process to them and places the outputs in
+    `processed/<module.__name__>`
+
+    If you want to exclude certain files, create a file in the folder
+    `image_database` called `.images_ignore` with a list of all filenames you
+    would like to exclude. Alternatively, you can set the `ignore` parameter. 
 
     Parameters
     ----------
     module : Module with function `process`
+
+    ignore: filename or list of filenames to ignore
     """
     image_names = os.listdir("image_database")
+    # ignored files by default
+    ignores = [".gitignore", ".image_ignore"]
+    if ignore:
+        if isinstance(ignore, list):
+            ignores.extend(ignore)
+        elif isinstance(ignore, str):
+            ignores.append(ignore)
+        else:
+            raise Exception("`ignore` is not a list or string")
+    try:       
+        with open("image_database/.image_ignore", "r") as f:
+            ignores.extend(f.read().splitlines())
+    except FileNotFoundError:
+        print("File '.image_ignore' not found - only ingnoring files ignored by default")
     for image_filename in image_names:
-        if not image_filename == ".gitignore":
+        if not image_filename in ignores:
             apply(module, image_filename)
