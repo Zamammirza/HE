@@ -1,0 +1,1 @@
+from .brisque_calculation import calculate_brisque
