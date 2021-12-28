@@ -2,15 +2,14 @@ import os
 import errno
 
 import cv2
-import numpy as np
 
-def load(image_filename):
+def load(image_filename, folder="image_database"):
     """Load image from database and return as grayscale OpenCV Image
 
     Parameters
     ----------
     image_filename : string
-        The filename of the image in the folder `image_database`
+        The filename of the image in the `folder` (image_database by default)
     
     Returns
     -------
@@ -18,7 +17,7 @@ def load(image_filename):
         The loaded image
     """
     print(f"loading {image_filename}")
-    path = f"image_database/{image_filename}"
+    path = f"{folder}/{image_filename}"
     if not os.path.isfile(path):
         raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), path)
     image = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
