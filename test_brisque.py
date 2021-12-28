@@ -15,4 +15,5 @@ stopped = time.time()
 
 print("took: " + str(stopped-started))
 
-# with 0AKZCRZA.png took 23.5 s
+# with 0AKZCRZA.png took 23.5 s (pybrisue)
+# with 0AKZCRZA.png took 3.1  s (opencv-contrib), but the values were different.

@@ -11,12 +11,11 @@ authors = [
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
-opencv-python = "^4.5.4"
 torch = "^1.10.0"
 torchvision = "^0.11.1"
 tensorboardX = "^2.4.1"
 matplotlib = "^3.5.1"
-pybrisque = {git = "https://github.com/atupwork/pybrisque.git"}
+opencv-contrib-python = "^4.5.4"
 
 [tool.poetry.dev-dependencies]
 
