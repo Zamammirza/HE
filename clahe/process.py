@@ -1,7 +1,9 @@
-from . import ContrastEnhancementPack
+
+import cv2
 
 def process(image):
     """Apply BBHE to the image
+
 
     Parameters
     ----------
@@ -14,7 +16,8 @@ def process(image):
         A copy of the input image with BBHE applied
     """
 
-    levels = ContrastEnhancementPack.get_depth(image)
-    processed_image = ContrastEnhancementPack.bbheq_util(image, levels)
     
-    return processed_image
+    clahe = cv2.createCLAHE(clipLimit = 15.0, tileGridSize = (20,20))
+    v = clahe.apply(image)
+    
+    return v
