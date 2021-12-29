@@ -1,8 +1,9 @@
-
 import cv2
 
+CLAHE = cv2.createCLAHE(clipLimit = 15.0, tileGridSize = (20,20))
+
 def process(image):
-    """Apply BBHE to the image
+    """Apply clahe to the image
 
 
     Parameters
@@ -13,11 +14,7 @@ def process(image):
     Returns
     -------
     processed_image : 2D numpy array (grayscale image)
-        A copy of the input image with BBHE applied
+        A copy of the input image with clahe applied
     """
-
+    return CLAHE.apply(image)
     
-    clahe = cv2.createCLAHE(clipLimit = 15.0, tileGridSize = (20,20))
-    v = clahe.apply(image)
-    
-    return v
