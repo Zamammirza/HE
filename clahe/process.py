@@ -1,6 +1,6 @@
 import cv2
 
-CLAHE = cv2.createCLAHE(clipLimit = 15.0, tileGridSize = (20,20))
+CLAHE = cv2.createCLAHE(clipLimit = 3, tileGridSize = (15, 15))
 
 def process(image):
     """Apply clahe to the image
